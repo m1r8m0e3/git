@@ -1,0 +1,885 @@
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git init
+Initialized empty Git repository in C:/Users/kusha/Desktop/gitpractice/.git/
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ touch a.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        a.c
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git add a.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   a.c
+
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git commit -m" a.c is created"
+[master (root-commit) cca1f89]  a.c is created
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 a.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git show
+commit cca1f896f88b79bfd78e5fb17da8be71ddeb7c79 (HEAD -> master)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:34:13 2024 +0530
+
+     a.c is created
+
+diff --git a/a.c b/a.c
+new file mode 100644
+index 0000000..e69de29
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git branch
+* master
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git branch feature
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git branch
+  feature
+* master
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ ls
+a.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git checkout feature
+Switched to branch 'feature'
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ ls
+a.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ touch b.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ git add b.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ git commit -m"b.c is created"
+[feature 08e0182] b.c is created
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 b.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ ls
+a.c  b.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ git checkout master
+Switched to branch 'master'
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git merge feature
+Updating cca1f89..08e0182
+Fast-forward
+ b.c | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 b.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ ls
+a.c  b.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git checkout feature
+Switched to branch 'feature'
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ touch c.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ git add c.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ git stash save
+Saved working directory and index state WIP on feature: 08e0182 b.c is created
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ git checkout master
+Switched to branch 'master'
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ ls
+a.c  b.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git stash pop
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   c.c
+
+Dropped refs/stash@{0} (d9cd69d466f2e06ed65108feb20437bcf27083be)
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ ls
+a.c  b.c  c.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git log
+commit 08e018215dd2c6dc25c6e4c62aad8451373fb2a7 (HEAD -> master, feature)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:35:58 2024 +0530
+
+    b.c is created
+
+commit cca1f896f88b79bfd78e5fb17da8be71ddeb7c79
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:34:13 2024 +0530
+
+     a.c is created
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git commit -m" c.c is created "
+[master d480453]  c.c is created
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 c.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git log
+commit d48045323e6064ef4151f3fcc31192a8bb5fdf18 (HEAD -> master)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:38:40 2024 +0530
+
+     c.c is created
+
+commit 08e018215dd2c6dc25c6e4c62aad8451373fb2a7 (feature)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:35:58 2024 +0530
+
+    b.c is created
+
+commit cca1f896f88b79bfd78e5fb17da8be71ddeb7c79
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:34:13 2024 +0530
+
+     a.c is created
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git tag
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git tag v1.0
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git tag
+v1.0
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git log
+commit d48045323e6064ef4151f3fcc31192a8bb5fdf18 (HEAD -> master, tag: v1.0)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:38:40 2024 +0530
+
+     c.c is created
+
+commit 08e018215dd2c6dc25c6e4c62aad8451373fb2a7 (feature)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:35:58 2024 +0530
+
+    b.c is created
+
+commit cca1f896f88b79bfd78e5fb17da8be71ddeb7c79
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:34:13 2024 +0530
+
+     a.c is created
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git clone https://github.com/kushalsm03/CS-AlliedBranches
+Cloning into 'CS-AlliedBranches'...
+remote: Enumerating objects: 6, done.
+remote: Total 6 (delta 0), reused 0 (delta 0), pack-reused 6
+Receiving objects: 100% (6/6), done.
+Resolving deltas: 100% (1/1), done.
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ ls
+CS-AlliedBranches/  a.c  b.c  c.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git checkout feature
+Switched to branch 'feature'
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ touch d.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ git add d.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ git commit -m "d.c is created"
+[feature fa62835] d.c is created
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 d.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ git log
+commit fa6283591de5378d062724878d53cd618a7355d8 (HEAD -> feature)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:40:50 2024 +0530
+
+    d.c is created
+
+commit 08e018215dd2c6dc25c6e4c62aad8451373fb2a7
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:35:58 2024 +0530
+
+    b.c is created
+
+commit cca1f896f88b79bfd78e5fb17da8be71ddeb7c79
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:34:13 2024 +0530
+
+     a.c is created
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ git checkout master
+Switched to branch 'master'
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git cherry-pick fa6283591de5378d062724878d53cd618a7355d8
+[master 1e07004] d.c is created
+ Date: Wed Feb 21 22:40:50 2024 +0530
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 d.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ ls
+CS-AlliedBranches/  a.c  b.c  c.c  d.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git remote -v
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git checkout feature
+Switched to branch 'feature'
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ touch e.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ git add e.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ git commit -m"e.c created"
+[feature 422aac5] e.c created
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 e.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ git checkout master
+Switched to branch 'master'
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git merge feature -m"feature is merged"
+Merge made by the 'ort' strategy.
+ e.c | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 e.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git log
+commit 29d9e9ac874f07f661af9ae91bdd1406b81c5c21 (HEAD -> master)
+Merge: 1e07004 422aac5
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:48:40 2024 +0530
+
+    feature is merged
+
+commit 422aac5abe7631f2e73cb5686ad4fa3338d4c699 (feature)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:47:58 2024 +0530
+
+    e.c created
+
+commit 1e07004b4facc97d9505ec2ce55af4391d823b0d
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:40:50 2024 +0530
+
+    d.c is created
+
+commit fa6283591de5378d062724878d53cd618a7355d8
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:40:50 2024 +0530
+
+    d.c is created
+
+commit d48045323e6064ef4151f3fcc31192a8bb5fdf18 (tag: v1.0)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:38:40 2024 +0530
+
+     c.c is created
+
+commit 08e018215dd2c6dc25c6e4c62aad8451373fb2a7
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:35:58 2024 +0530
+
+    b.c is created
+
+commit cca1f896f88b79bfd78e5fb17da8be71ddeb7c79
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:34:13 2024 +0530
+
+     a.c is created
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git show --author="kushal"
+commit 29d9e9ac874f07f661af9ae91bdd1406b81c5c21 (HEAD -> master)
+Merge: 1e07004 422aac5
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:48:40 2024 +0530
+
+    feature is merged
+
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git commit -m" merged is commited"
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        CS-AlliedBranches/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ ls
+CS-AlliedBranches/  a.c  b.c  c.c  d.c  e.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git log
+commit 29d9e9ac874f07f661af9ae91bdd1406b81c5c21 (HEAD -> master)
+Merge: 1e07004 422aac5
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:48:40 2024 +0530
+
+    feature is merged
+
+commit 422aac5abe7631f2e73cb5686ad4fa3338d4c699 (feature)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:47:58 2024 +0530
+
+    e.c created
+
+commit 1e07004b4facc97d9505ec2ce55af4391d823b0d
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:40:50 2024 +0530
+
+    d.c is created
+
+commit fa6283591de5378d062724878d53cd618a7355d8
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:40:50 2024 +0530
+
+    d.c is created
+
+commit d48045323e6064ef4151f3fcc31192a8bb5fdf18 (tag: v1.0)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:38:40 2024 +0530
+
+     c.c is created
+
+commit 08e018215dd2c6dc25c6e4c62aad8451373fb2a7
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:35:58 2024 +0530
+
+    b.c is created
+
+commit cca1f896f88b79bfd78e5fb17da8be71ddeb7c79
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:34:13 2024 +0530
+
+     a.c is created
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git checkout feature
+Switched to branch 'feature'
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ touch f.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ git add f.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ git commit -m"f.c is created "
+[feature cc490f1] f.c is created
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 f.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ ls
+CS-AlliedBranches/  a.c  b.c  d.c  e.c  f.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ git checkout master
+Switched to branch 'master'
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ ls
+CS-AlliedBranches/  a.c  b.c  c.c  d.c  e.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git checkout feature
+Switched to branch 'feature'
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ git log
+commit cc490f10499fe6d02a101c1429c839ac5c41ed48 (HEAD -> feature)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:52:22 2024 +0530
+
+    f.c is created
+
+commit 422aac5abe7631f2e73cb5686ad4fa3338d4c699
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:47:58 2024 +0530
+
+    e.c created
+
+commit fa6283591de5378d062724878d53cd618a7355d8
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:40:50 2024 +0530
+
+    d.c is created
+
+commit 08e018215dd2c6dc25c6e4c62aad8451373fb2a7
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:35:58 2024 +0530
+
+    b.c is created
+
+commit cca1f896f88b79bfd78e5fb17da8be71ddeb7c79
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:34:13 2024 +0530
+
+     a.c is created
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (feature)
+$ git checkout master
+Switched to branch 'master'
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ ls
+CS-AlliedBranches/  a.c  b.c  c.c  d.c  e.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git rebase cc490f10499fe6d02a101c1429c839ac5c41ed48
+dropping 1e07004b4facc97d9505ec2ce55af4391d823b0d d.c is created -- patch contents already upstream
+Successfully rebased and updated refs/heads/master.
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ ls
+CS-AlliedBranches/  a.c  b.c  c.c  d.c  e.c  f.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git log
+commit 691add243d82f090e47ca94be8d6841f2ec198e6 (HEAD -> master)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:38:40 2024 +0530
+
+     c.c is created
+
+commit cc490f10499fe6d02a101c1429c839ac5c41ed48 (feature)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:52:22 2024 +0530
+
+    f.c is created
+
+commit 422aac5abe7631f2e73cb5686ad4fa3338d4c699
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:47:58 2024 +0530
+
+    e.c created
+
+commit fa6283591de5378d062724878d53cd618a7355d8
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:40:50 2024 +0530
+
+    d.c is created
+
+commit 08e018215dd2c6dc25c6e4c62aad8451373fb2a7
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:35:58 2024 +0530
+
+    b.c is created
+
+commit cca1f896f88b79bfd78e5fb17da8be71ddeb7c79
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:34:13 2024 +0530
+
+     a.c is created
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git log -5
+commit 691add243d82f090e47ca94be8d6841f2ec198e6 (HEAD -> master)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:38:40 2024 +0530
+
+     c.c is created
+
+commit cc490f10499fe6d02a101c1429c839ac5c41ed48 (feature)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:52:22 2024 +0530
+
+    f.c is created
+
+commit 422aac5abe7631f2e73cb5686ad4fa3338d4c699
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:47:58 2024 +0530
+
+    e.c created
+
+commit fa6283591de5378d062724878d53cd618a7355d8
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:40:50 2024 +0530
+
+    d.c is created
+
+commit 08e018215dd2c6dc25c6e4c62aad8451373fb2a7
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:35:58 2024 +0530
+
+    b.c is created
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git log
+commit 691add243d82f090e47ca94be8d6841f2ec198e6 (HEAD -> master)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:38:40 2024 +0530
+
+     c.c is created
+
+commit cc490f10499fe6d02a101c1429c839ac5c41ed48 (feature)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:52:22 2024 +0530
+
+    f.c is created
+
+commit 422aac5abe7631f2e73cb5686ad4fa3338d4c699
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:47:58 2024 +0530
+
+    e.c created
+
+commit fa6283591de5378d062724878d53cd618a7355d8
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:40:50 2024 +0530
+
+    d.c is created
+
+commit 08e018215dd2c6dc25c6e4c62aad8451373fb2a7
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:35:58 2024 +0530
+
+    b.c is created
+
+commit cca1f896f88b79bfd78e5fb17da8be71ddeb7c79
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:34:13 2024 +0530
+
+     a.c is created
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ touch g.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git add g.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git commit -m"g.c is created"
+[master 6571344] g.c is created
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 g.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ cd CS-AlliedBranches/
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice/CS-AlliedBranches (main)
+$ ls
+README.md
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice/CS-AlliedBranches (main)
+$ touch h.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice/CS-AlliedBranches (main)
+$ git add h.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice/CS-AlliedBranches (main)
+$ git commit -m"h.c is created"
+[main 161784d] h.c is created
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 h.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice/CS-AlliedBranches (main)
+$ git pull origin
+Already up to date.
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice/CS-AlliedBranches (main)
+$ git branch p1
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice/CS-AlliedBranches (main)
+$ git checkout p1
+Switched to branch 'p1'
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice/CS-AlliedBranches (p1)
+$ touch i.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice/CS-AlliedBranches (p1)
+$ git add i.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice/CS-AlliedBranches (p1)
+$ git commit -m"i.c is created"
+[p1 f0865ae] i.c is created
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 i.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice/CS-AlliedBranches (p1)
+$ git push origin p1
+Enumerating objects: 6, done.
+Counting objects: 100% (6/6), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (5/5), 437 bytes | 437.00 KiB/s, done.
+Total 5 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), done.
+remote:
+remote: Create a pull request for 'p1' on GitHub by visiting:
+remote:      https://github.com/kushalsm03/CS-AlliedBranches/pull/new/p1
+remote:
+To https://github.com/kushalsm03/CS-AlliedBranches
+ * [new branch]      p1 -> p1
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice/CS-AlliedBranches (p1)
+$ git remote -v
+origin  https://github.com/kushalsm03/CS-AlliedBranches (fetch)
+origin  https://github.com/kushalsm03/CS-AlliedBranches (push)
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice/CS-AlliedBranches (p1)
+$ cd
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~
+$ cd Desktop/
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop (master)
+$ cd gitpractice/
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ ls
+CS-AlliedBranches/  a.c  b.c  c.c  d.c  e.c  f.c  g.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git log
+commit 6571344d93d3108294c8c30e3f7b6a7929f165aa (HEAD -> master)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:56:37 2024 +0530
+
+    g.c is created
+
+commit 691add243d82f090e47ca94be8d6841f2ec198e6
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:38:40 2024 +0530
+
+     c.c is created
+
+commit cc490f10499fe6d02a101c1429c839ac5c41ed48 (feature)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:52:22 2024 +0530
+
+    f.c is created
+
+commit 422aac5abe7631f2e73cb5686ad4fa3338d4c699
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:47:58 2024 +0530
+
+    e.c created
+
+commit fa6283591de5378d062724878d53cd618a7355d8
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:40:50 2024 +0530
+
+    d.c is created
+
+commit 08e018215dd2c6dc25c6e4c62aad8451373fb2a7
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:35:58 2024 +0530
+
+    b.c is created
+
+commit cca1f896f88b79bfd78e5fb17da8be71ddeb7c79
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:34:13 2024 +0530
+
+     a.c is created
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ touch j.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git add j.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git commit -m"j.c is created"
+[master 8b8eafd] j.c is created
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 j.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git log
+commit 8b8eafd9ac19e43185866dbd91e87b15ab754ec2 (HEAD -> master)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 23:01:21 2024 +0530
+
+    j.c is created
+
+commit 6571344d93d3108294c8c30e3f7b6a7929f165aa
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:56:37 2024 +0530
+
+    g.c is created
+
+commit 691add243d82f090e47ca94be8d6841f2ec198e6
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:38:40 2024 +0530
+
+     c.c is created
+
+commit cc490f10499fe6d02a101c1429c839ac5c41ed48 (feature)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:52:22 2024 +0530
+
+    f.c is created
+
+commit 422aac5abe7631f2e73cb5686ad4fa3338d4c699
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:47:58 2024 +0530
+
+    e.c created
+
+commit fa6283591de5378d062724878d53cd618a7355d8
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:40:50 2024 +0530
+
+    d.c is created
+
+commit 08e018215dd2c6dc25c6e4c62aad8451373fb2a7
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:35:58 2024 +0530
+
+    b.c is created
+
+commit cca1f896f88b79bfd78e5fb17da8be71ddeb7c79
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:34:13 2024 +0530
+
+     a.c is created
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git revert 8b8eafd9ac19e43185866dbd91e87b15ab754ec2
+[master 10fcfa4] Revert "j.c is created"
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ delete mode 100644 j.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git log
+commit 10fcfa47bf6655ed0b4158f4f8ee3f80a53a0d87 (HEAD -> master)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 23:02:07 2024 +0530
+
+    Revert "j.c is created"
+
+    This reverts commit 8b8eafd9ac19e43185866dbd91e87b15ab754ec2.
+
+commit 8b8eafd9ac19e43185866dbd91e87b15ab754ec2
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 23:01:21 2024 +0530
+
+    j.c is created
+
+commit 6571344d93d3108294c8c30e3f7b6a7929f165aa
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:56:37 2024 +0530
+
+    g.c is created
+
+commit 691add243d82f090e47ca94be8d6841f2ec198e6
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:38:40 2024 +0530
+
+     c.c is created
+
+commit cc490f10499fe6d02a101c1429c839ac5c41ed48 (feature)
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:52:22 2024 +0530
+
+    f.c is created
+
+commit 422aac5abe7631f2e73cb5686ad4fa3338d4c699
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:47:58 2024 +0530
+
+    e.c created
+
+commit fa6283591de5378d062724878d53cd618a7355d8
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:40:50 2024 +0530
+
+    d.c is created
+
+commit 08e018215dd2c6dc25c6e4c62aad8451373fb2a7
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:35:58 2024 +0530
+
+    b.c is created
+
+commit cca1f896f88b79bfd78e5fb17da8be71ddeb7c79
+Author: kushal <kushal2003@gmail.com>
+Date:   Wed Feb 21 22:34:13 2024 +0530
+
+     a.c is created
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ ls
+CS-AlliedBranches/  a.c  b.c  c.c  d.c  e.c  f.c  g.c
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$ git bye
+git: 'bye' is not a git command. See 'git --help'.
+
+The most similar command is
+        blame
+
+kusha@LAPTOP-TVTEIMFU MINGW64 ~/Desktop/gitpractice (master)
+$
+git ends here
